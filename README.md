@@ -9,6 +9,6 @@ How do annual members and casual riders use Cyclistic bikes differently?
 
 ## Description 
 
-More detailed about my Scrping steps, you will find out here [all_trips.R](https://github.com/minbayevb/Cyclistic_Bike_Share/blob/master/all_trips.R)
+More detailed about my Analysis steps, you will find out here [all_trips.R](https://github.com/minbayevb/Cyclistic_Bike_Share/blob/master/all_trips.R)
 
 
