@@ -62,7 +62,7 @@ clean_list <- lapply(all_dfs, EditDataFunction)
 all_dfs <- bind_rows(clean_list)
 colnames(all_dfs)
 
-all_dfs <- all_dfs[, -c(9:12)] # delete columns 5 through 7
+all_dfs <- all_dfs[, -c(9:12)] # deleting columns 9 through 12
 
 all_dfs <- rename(all_dfs,
                 trip_id = ride_id,
@@ -83,7 +83,8 @@ str(all_dfs)
 summary(all_dfs)
 
 # There are a few problems we will need to fix:
-# (1) In the "usertype" column, there are two names for members ("member" and "Subscriber") and two names for casual riders ("Customer" and "casual"). We will need to consolidate that from four to two labels.
+# (1) In the "usertype" column, there are two names for members ("member" and "Subscriber") and two names for casual riders ("Customer" and "casual"). 
+# We will need to consolidate that from four to two labels.
 
 all_dfs <- all_dfs %>% 
   mutate(usertype = recode(usertype,
@@ -122,7 +123,7 @@ aggregate(all_trips$ride_length ~ all_trips$usertype + all_trips$day_of_week, FU
 # Notice that the days of the week are out of order. Let's fix that.
 all_trips$day_of_week <- ordered(all_trips$day_of_week, levels=c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"))
 aggregate(all_trips$ride_length ~ all_trips$usertype + all_trips$day_of_week, FUN = mean)
-
+# analyze ridership data by type and weekday
 all_trips %>% 
   mutate(weekday = wday(start_time, label = TRUE)) %>%  #creates weekday field using wday()
   group_by(usertype, weekday) %>%  #groups by usertype and weekday
